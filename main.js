@@ -1,5 +1,5 @@
 // Function to actually do the connection to the wallet
-async function connectWallet() {
+async function connectAndSend() {
   try {
     await window.solana.connect();
     await sendSol();
@@ -7,14 +7,14 @@ async function connectWallet() {
 }
 
 //Function to create button and on click
-function connectAndSend() {
+function validateAndPlaceButton() {
   const isPhantomInstalled = window.solana && window.solana.isPhantom;
 
   if (isPhantomInstalled == true) {
     let btn = document.createElement("button");
     let scriptObject = document.getElementById("test");
     btn.innerHTML = scriptObject.getAttribute("button-text");
-    btn.onclick = connectWallet;
+    btn.onclick = connectAndSend;
     document.body.appendChild(btn);
   } else {
     window.alert("Solana object not found! Get a Phantom Wallet 👻");
@@ -23,23 +23,22 @@ function connectAndSend() {
 }
 
 // On load of page check to see if there is a phantom window object if not then haave popup
-window.addEventListener("load", connectAndSend);
+window.addEventListener("load", validateAndPlaceButton);
 
 async function sendSol() {
+  // Get values for transaction from script tag inputs
   const provider = window.solana;
   const scriptObject = document.getElementById("test");
-  console.log("Public key of the emitter: ", provider.publicKey.toString());
-  console.log(solanaWeb3.LAMPORTS_PER_SOL);
-
-  let connection = new solanaWeb3.Connection(
+  const connection = new solanaWeb3.Connection(
     solanaWeb3.clusterApiUrl("devnet"),
     "confirmed"
   );
-  var toAccount = new solanaWeb3.PublicKey(
+  const toAccount = new solanaWeb3.PublicKey(
     scriptObject.getAttribute("to-address")
   );
 
-  var transaction = new solanaWeb3.Transaction().add(
+  // Create transaction object
+  let transaction = new solanaWeb3.Transaction().add(
     solanaWeb3.SystemProgram.transfer({
       fromPubkey: provider.publicKey,
       toPubkey: toAccount,
