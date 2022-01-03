@@ -12,7 +12,7 @@ function validateAndPlaceButton() {
 
   if (isPhantomInstalled == true) {
     let btn = document.createElement("button");
-    let scriptObject = document.getElementById("test");
+    let scriptObject = document.getElementById("solButton");
     btn.innerHTML = scriptObject.getAttribute("button-text");
     btn.onclick = connectAndSend;
     document.body.appendChild(btn);
@@ -28,7 +28,7 @@ window.addEventListener("load", validateAndPlaceButton);
 async function sendSol() {
   // Get values for transaction from script tag inputs
   const provider = window.solana;
-  const scriptObject = document.getElementById("test");
+  const scriptObject = document.getElementById("solButton");
   const connection = new solanaWeb3.Connection(
     solanaWeb3.clusterApiUrl("devnet"),
     "confirmed"
