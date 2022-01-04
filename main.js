@@ -1,25 +1,23 @@
 // Function to actually do the connection to the wallet
 async function connectAndSend() {
   try {
-    await window.solana.connect();
-    await sendSol();
+    if (window.solana && window.solana.isPhantom) {
+      await window.solana.connect();
+      await sendSol();
+    } else {
+      window.alert("Solana object not found! Get a Phantom Wallet 👻");
+      window.location = "https://www.phantom.app/";
+    }
   } catch (err) {}
 }
 
 //Function to create button and on click
 function validateAndPlaceButton() {
-  const isPhantomInstalled = window.solana && window.solana.isPhantom;
-
-  if (isPhantomInstalled == true) {
-    let btn = document.createElement("button");
-    let scriptObject = document.getElementById("solButton");
-    btn.innerHTML = scriptObject.getAttribute("button-text");
-    btn.onclick = connectAndSend;
-    document.body.appendChild(btn);
-  } else {
-    window.alert("Solana object not found! Get a Phantom Wallet 👻");
-    window.location = "https://www.phantom.app/";
-  }
+  let btn = document.createElement("button");
+  let scriptObject = document.getElementById("solButton");
+  btn.innerHTML = scriptObject.getAttribute("button-text");
+  btn.onclick = connectAndSend;
+  document.body.appendChild(btn);
 }
 
 // On load of page check to see if there is a phantom window object if not then haave popup
