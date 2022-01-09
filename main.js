@@ -32,7 +32,7 @@ async function sendSol() {
     "confirmed"
   );
   const toAccount = new solanaWeb3.PublicKey(
-    scriptObject.getAttribute("to-address")
+    scriptObject.getAttribute("destination-address")
   );
 
   // Create transaction object
