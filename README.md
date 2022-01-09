@@ -1,5 +1,7 @@
 # phantom-wallet-button 🦄
-# Behavior
+Generates a html button that when clicked trasmits a chosen amount of sol to a destination phantom wallet.
+
+# Detailed Behavior
 1) When the user clicks on the button it first checks to see if there is a phantom wallet installed. If not it redirects to download a wallet.
 2) If a phantom wallet exists it will prompt the user to connect their wallet to the site.
 3) Once connected it will create the transaction to the chosen destination address for the the sol amount.
