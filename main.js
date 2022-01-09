@@ -16,7 +16,8 @@ function validateAndPlaceButton() {
   let btn = document.createElement("button");
   let scriptObject = document.getElementById("solButton");
   btn.innerHTML = scriptObject.getAttribute("button-text");
-  btn.style = scriptObject.getAttribute("button-style");
+  btn.style =
+    "color: white; background-image: linear-gradient(to right, #fbc2eb 0%, #a6c1ee 51%, #fbc2eb 100%); flex: 1 1 auto; margin: 0px; padding: 10px; text-align: center; text-transform: uppercase; transition: 0.5s; background-size: 200% auto; color: white; text-shadow: 0px 0px 10px rgba(0,0,0,0.2); box-shadow: 0 0 20px #eee; border-radius: 10px; font-family:'Montserrat', sans-serif; font-size: 12px;";
   btn.onclick = connectAndSend;
   document.body.appendChild(btn);
 }
