@@ -28,7 +28,7 @@ async function sendSol() {
   const provider = window.solana;
   const scriptObject = document.getElementById("solButton");
   const connection = new solanaWeb3.Connection(
-    solanaWeb3.clusterApiUrl("devnet"),
+    solanaWeb3.clusterApiUrl(scriptObject.getAttribute("network")),
     "confirmed"
   );
   const toAccount = new solanaWeb3.PublicKey(
