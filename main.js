@@ -16,6 +16,7 @@ function validateAndPlaceButton() {
   let btn = document.createElement("button");
   let scriptObject = document.getElementById("solButton");
   btn.innerHTML = scriptObject.getAttribute("button-text");
+  btn.style = scriptObject.getAttribute("button-style");
   btn.onclick = connectAndSend;
   document.body.appendChild(btn);
 }
